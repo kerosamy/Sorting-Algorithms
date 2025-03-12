@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class RadixSort implements SortingStrategy {
+public class ONSort implements SortingStrategy {
     public int countDigits(int n) {
         int digits =0 ;
         while (n>0) {
