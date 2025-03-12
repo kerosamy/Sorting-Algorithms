@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class ONSort implements SortingStrategy {
@@ -10,48 +12,49 @@ public class ONSort implements SortingStrategy {
         }
         return digits;
     }
-    public int[] countingSort(int[] arr, int digit) {
+    public List<Integer>  countingSort(List<Integer> arr, int digit) {
 
         Queue<Integer>[] queues = new LinkedList[10];
         for (int i = 0; i < 10; i++) {
             queues[i] = new LinkedList<>();
         }
 
-        for (int i = 0; i < arr.length; i++) {
-            int num = arr[i];
+        for (int i = 0; i < arr.size(); i++) {
+            int num = arr.get(i);
             for (int j = 0; j < digit; j++) {
                 num /= 10;
             }
-            queues[num%10].add(arr[i]);
+            queues[num%10].add(arr.get(i));
         }
         int index = 0;
         for (int i = 0; i < 10; i++) {
             while (!queues[i].isEmpty()) {
-                arr[index++] = queues[i].remove();
+                arr.set(index, queues[i].remove());
+                index ++;
             }
         }
         return arr;
     }
-    public void sort(int[] arr , boolean stepByStep) {
-        int n = arr.length;
+    public void sort(List<Integer> arr , boolean stepByStep) {
+        int n = arr.size();
         int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
         int NumOfPos=0;
         int NumOfNeg=0;
         for (int i = 0; i < n; i++) {
-            if (arr[i]> max ) max = arr[i];
-            if (arr[i]< min ) min = arr[i];
-            if (arr[i] >= 0) NumOfPos++;
+            if (arr.get(i)> max ) max = arr.get(i);
+            if (arr.get(i)< min ) min = arr.get(i);
+            if (arr.get(i) >= 0) NumOfPos++;
             else NumOfNeg++;
         }
         int digits = countDigits(max);
         if (min <0){
             int digits2 = countDigits(Math.abs(min)) ,k =0 , j=0 ;
-            int pos[] = new int[NumOfPos];
-            int neg[] = new int[NumOfNeg];
+            List<Integer> pos = new ArrayList<>();
+            List<Integer> neg = new ArrayList<>();
             for (int i = 0; i < n; i++) {
-                if (arr[i]>=0) pos[k++] = arr[i];
-                else neg[j++] = (arr[i])*-1;
+                if (arr.get(i)>=0) pos.add( arr.get(i));
+                else neg.add(arr.get(i)*-1);
             }
             int x = Math.max(digits, digits2);
             int y = Math.min(digits, digits2);
@@ -60,10 +63,10 @@ public class ONSort implements SortingStrategy {
                 neg = countingSort(neg, i);
                 if (stepByStep && i != digits-1) {
                     for ( j = 0; j <NumOfNeg; j++) {
-                        System.out.print(neg[neg.length-j-1]*-1+" ");
+                        System.out.print(neg.get(neg.size()-j-1)*-1+" ");
                     }
                     for ( j = 0; j <NumOfPos; j++) {
-                        System.out.print(pos[j]+" ");
+                        System.out.print(pos.get(j)+" ");
                     }
                     System.out.println();
                 }
@@ -73,20 +76,22 @@ public class ONSort implements SortingStrategy {
                 else neg = countingSort(neg, i);
                 if (stepByStep && i != digits-1) {
                     for ( j = 0; j <NumOfNeg; j++) {
-                        System.out.print(neg[neg.length-j-1]*-1+" ");
+                        System.out.print(neg.get(neg.size()-j-1)*-1+" ");
                     }
                     for ( j = 0; j <NumOfPos; j++) {
-                        System.out.print(pos[j]+" ");
+                        System.out.print(pos.get(j)+" ");
                     }
                     System.out.println();
                 }
             }
             int index = 0;
-            for (int i = 0; i < neg.length; i++) {
-                arr[index++] = neg[neg.length-i-1]*-1;
+            for (int i = 0; i < neg.size(); i++) {
+                arr.set(index, neg.get(neg.size()-1-i)*-1);
+                index++;
             }
-            for (int i = 0; i < pos.length; i++) {
-                arr[index++] = pos[i];
+            for (int i = 0; i < pos.size(); i++) {
+                arr.set(index, pos.get(i));
+                index++;
             }
         }
         else {
@@ -95,14 +100,14 @@ public class ONSort implements SortingStrategy {
                 arr= countingSort(arr, i);
                 if (stepByStep && i != digits-1) {
                     for (int j = 0; j <n; j++) {
-                        System.out.print(arr[j]+" ");
+                        System.out.print(arr.get(j)+" ");
                     }
                     System.out.println();
                 }
             }
         }
         for (int j = 0; j <n; j++) {
-            System.out.print(arr[j]+" ");
+            System.out.print(arr.get(j)+" ");
         }
     }
 }
