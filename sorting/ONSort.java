@@ -37,7 +37,7 @@ public class ONSort implements SortingStrategy {
         }
         return arr;
     }
-    public void sort(ArrayList<Integer> arr , boolean stepByStep) {
+    public ArrayList<Integer> sort(ArrayList<Integer> arr , boolean stepByStep) {
         int n = arr.size();
         this.counter=1;
         this.vis = new ArrayList<>(n);
@@ -77,7 +77,7 @@ public class ONSort implements SortingStrategy {
                     for ( j = 0; j <NumOfPos; j++) {
                         step.add(pos.get(j)) ;
                     }
-                    printArray.printStep(counter, step, this.vis);
+                    printArray.printStepsRadix(step, counter);
                     counter++;
                 }
             }
@@ -92,7 +92,7 @@ public class ONSort implements SortingStrategy {
                     for ( j = 0; j <NumOfPos; j++) {
                        step.add(pos.get(j));
                     }
-                    printArray.printStep(counter, step,  this.vis);
+                    printArray.printStepsRadix(step,counter);
                     counter++;
                 }
             }
@@ -117,5 +117,6 @@ public class ONSort implements SortingStrategy {
             }
         }
         printArray.printSortedArray(arr);
+        return arr ;
     }
 }

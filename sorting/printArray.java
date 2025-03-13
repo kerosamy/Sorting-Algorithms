@@ -7,6 +7,7 @@ public class printArray {
     public static String YELLOW = "\u001B[33m";
     public static  String PURPLE = "\u001B[35m";
     public static  String RED = "\u001B[31m";
+    public static  String BLUE = "\u001B[34m";
     public static void printStep(int counter , ArrayList<Integer> Arr,ArrayList<Boolean>vis) {
         System.out.print(YELLOW+"Step "+counter+" --> "+RESET+RED+"[ "+RESET);
         for (int i = 0; i < Arr.size(); i++) {
@@ -28,6 +29,27 @@ public class printArray {
             }
         }
         System.out.print(RED+"]"+RESET);
+        System.out.println("\n");
+    }
+    public static void printStepsRadix (ArrayList<Integer>Arr,int counter){
+        System.out.print(YELLOW+"Step "+counter+" --> "+RESET+RED+"[ "+RESET);
+        for (int i = 0; i < Arr.size(); i++){
+          String s = Arr.get(i).toString();
+          for (int j = 0; j <s.length(); j++) {
+             if(s.charAt(j)=='-'){
+                System.out.print("-");
+                continue;
+            }
+             if(s.length()-j>counter){
+                System.out.print(s.charAt(j));
+            }
+            else{
+                System.out.print(GREEN+s.charAt(j)+RESET);
+            }
+          }
+          if(i!=Arr.size()-1)System.out.print(", ");
+        }
+        System.out.print(RED+" ]"+RESET);
         System.out.println("\n");
     }
     public static void printFristArray(ArrayList<Integer>arr){

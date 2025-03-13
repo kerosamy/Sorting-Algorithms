@@ -4,7 +4,7 @@ public class ON2Sort implements SortingStrategy{
  
     
 
-    public void sort(ArrayList<Integer> arr, boolean printSteps) {
+    public ArrayList<Integer> sort(ArrayList<Integer> arr, boolean printSteps) {
         int n = arr.size();
         ArrayList<Boolean> vis = new ArrayList<>(n);
         for (int i = 0; i < n; i++) {
@@ -28,6 +28,7 @@ public class ON2Sort implements SortingStrategy{
             if (!swapped) break;
         }
         printArray.printSortedArray(arr);
+        return arr;
     }
    
 }

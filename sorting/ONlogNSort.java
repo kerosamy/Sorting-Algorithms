@@ -46,19 +46,21 @@ public class ONlogNSort implements SortingStrategy{
     }
     private void solve(int start, int end) {
         if (end > start) {
-            if(steps){
+            if(steps&&counter!=0){
                 printArray.printStep(counter, Arr, vis);
                 counter++;
             }
+            if(counter==0)counter++;
+            
            
             int pivot = partition(start, end);
             solve(start, pivot - 1);
             solve(pivot + 1, end);
         }
     }
-    public void sort(ArrayList<Integer>  arr, boolean stepByStep) {
+    public ArrayList<Integer> sort(ArrayList<Integer>  arr, boolean stepByStep) {
         this.Arr = arr;
-        this.counter=1;
+        this.counter=0;
         this.steps = stepByStep ;
         this.vis = new ArrayList<>(Arr.size());
         for (int i = 0; i < Arr.size(); i++) {
@@ -67,6 +69,7 @@ public class ONlogNSort implements SortingStrategy{
         printArray.printFristArray(arr);
         solve(0, arr.size() - 1);
         printArray.printSortedArray(arr);
+        return arr;
     }
  
 }

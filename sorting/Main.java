@@ -18,10 +18,10 @@ public class Main {
         Sorter sort = new Sorter(filepath);
         while (true) {
             System.out.println("\nChoose Sorting Algorithm:");
-            System.out.println("1.O(N²) Sort (Bubble Sort)");
-            System.out.println("2.O(NlogN) Sort (Quick Sort)");
-            System.out.println("3.O(N) Sort (Radix Sort)");
-            System.out.println("4.Exit");
+            System.out.println(printArray.PURPLE+"1.O(N²) Sort (Bubble Sort)"+printArray.RESET);
+            System.out.println(printArray.BLUE+"2.O(NlogN) Sort (Quick Sort)"+printArray.RESET);
+            System.out.println(printArray.GREEN+"3.O(N) Sort (Radix Sort)"+printArray.RESET);
+            System.out.println(printArray.RED+"4.Exit"+printArray.RESET);
             System.out.print("Enter choice: ");
             int choice = sc.nextInt();
             if (choice == 4) break;

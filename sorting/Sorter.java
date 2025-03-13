@@ -25,16 +25,15 @@ public class Sorter {
             }
             scanner.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + filepath);
+            System.out.println(printArray.RED+"File not found: " + filepath+printArray.RESET);
             e.printStackTrace();
             System.exit(1); 
         } catch (NumberFormatException e) {
-            System.out.println("Error parsing numbers from file.");
+            System.out.println(printArray.RED+"Error parsing numbers from file."+printArray.RESET);
             e.printStackTrace();
             System.exit(1); 
         }
     }
-
     public void setSortingStrategy(SortingStrategy strategy) {
         this.strategy = strategy;
     }
@@ -44,6 +43,6 @@ public class Sorter {
         strategy.sort(arr, steps);
         long endTime = System.nanoTime(); 
         long duration = endTime - startTime;
-        System.out.println("Sorting completed in " + (duration / 1_000_000.0) + " milliseconds");
+        System.out.println(printArray.YELLOW+"Sorting completed in " + printArray.CYAN+(duration / 1_000_000.0)+printArray.RESET +printArray.YELLOW+ " milliseconds"+printArray.RESET);
     }
 }
