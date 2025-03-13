@@ -1,10 +1,11 @@
+package sort;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class ONSort implements SortingStrategy {
-    private ArrayList<Boolean> vis; 
+    private ArrayList<Boolean> vis;
     private int counter  ;
     public int countDigits(int n) {
         int digits =0 ;
@@ -15,7 +16,7 @@ public class ONSort implements SortingStrategy {
         return digits;
     }
     public ArrayList<Integer>  countingSort(ArrayList<Integer> arr, int digit) {
-      
+
         Queue<Integer>[] queues = new LinkedList[10];
         for (int i = 0; i < 10; i++) {
             queues[i] = new LinkedList<>();
@@ -37,6 +38,7 @@ public class ONSort implements SortingStrategy {
         }
         return arr;
     }
+    @Override
     public ArrayList<Integer> sort(ArrayList<Integer> arr , boolean stepByStep) {
         int n = arr.size();
         this.counter=1;
@@ -72,7 +74,7 @@ public class ONSort implements SortingStrategy {
                 if (stepByStep && i != digits-1) {
                     ArrayList<Integer> step = new ArrayList<>();
                     for ( j = 0; j <NumOfNeg; j++) {
-                       step.add(neg.get(neg.size()-j-1)*-1); 
+                        step.add(neg.get(neg.size()-j-1)*-1);
                     }
                     for ( j = 0; j <NumOfPos; j++) {
                         step.add(pos.get(j)) ;
@@ -87,10 +89,10 @@ public class ONSort implements SortingStrategy {
                 if (stepByStep && i != digits-1) {
                     ArrayList<Integer> step = new ArrayList<>();
                     for ( j = 0; j <NumOfNeg; j++) {
-                       step.add(neg.get(neg.size()-j-1)*-1) ;
+                        step.add(neg.get(neg.size()-j-1)*-1) ;
                     }
                     for ( j = 0; j <NumOfPos; j++) {
-                       step.add(pos.get(j));
+                        step.add(pos.get(j));
                     }
                     printArray.printStepsRadix(step,counter);
                     counter++;
@@ -111,8 +113,8 @@ public class ONSort implements SortingStrategy {
             for (int i = 0; i < digits; i++) {
                 arr= countingSort(arr, i);
                 if (stepByStep && i != digits-1) {
-                   printArray.printStep(counter, arr, vis);
-                   counter++;
+                    printArray.printStep(counter, arr, vis);
+                    counter++;
                 }
             }
         }

@@ -1,10 +1,10 @@
+package sort;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ONlogNSort implements SortingStrategy{
+public class ONlogNSort implements SortingStrategy {
     public ArrayList<Integer> Arr;
-    private ArrayList<Boolean> vis; 
+    private ArrayList<Boolean> vis;
     private Boolean steps  ;
     private int counter;
 
@@ -20,12 +20,12 @@ public class ONlogNSort implements SortingStrategy{
         if (Arr.get(last) < Arr.get(first)) swap(last, first);
         if (Arr.get(last) < Arr.get(mid)) swap(last, mid);
         swap(mid, last-1);
-        return last-1; 
+        return last-1;
     }
 
     private int partition(int first, int last) {
         int pivot = medianOfThree(first, last);
-        int i = first ; 
+        int i = first ;
         int j = pivot;
         while (true) {
             while (Arr.get(pivot) >= Arr.get(i) && pivot != i) i++;
@@ -51,13 +51,14 @@ public class ONlogNSort implements SortingStrategy{
                 counter++;
             }
             if(counter==0)counter++;
-            
-           
+
+
             int pivot = partition(start, end);
             solve(start, pivot - 1);
             solve(pivot + 1, end);
         }
     }
+    @Override
     public ArrayList<Integer> sort(ArrayList<Integer>  arr, boolean stepByStep) {
         this.Arr = arr;
         this.counter=0;
@@ -71,5 +72,5 @@ public class ONlogNSort implements SortingStrategy{
         printArray.printSortedArray(arr);
         return arr;
     }
- 
+
 }

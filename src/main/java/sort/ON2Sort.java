@@ -1,9 +1,11 @@
+package sort;
+
 import java.util.ArrayList;
 
-public class ON2Sort implements SortingStrategy{
- 
-    
+public class ON2Sort implements SortingStrategy {
 
+
+    @Override
     public ArrayList<Integer> sort(ArrayList<Integer> arr, boolean printSteps) {
         int n = arr.size();
         ArrayList<Boolean> vis = new ArrayList<>(n);
@@ -23,12 +25,12 @@ public class ON2Sort implements SortingStrategy{
             }
             vis.set(n-1-i, true);
             if (printSteps) {
-               printArray.printStep(i+1, arr, vis);
+                printArray.printStep(i+1, arr, vis);
             }
             if (!swapped) break;
         }
         printArray.printSortedArray(arr);
         return arr;
     }
-   
+
 }
