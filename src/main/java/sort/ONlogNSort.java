@@ -3,7 +3,7 @@ package sort;
 import java.util.ArrayList;
 
 public class ONlogNSort implements SortingStrategy {
-    public ArrayList<Integer> Arr;
+    private ArrayList<Integer> Arr;
     private ArrayList<Boolean> vis;
     private Boolean steps  ;
     private int counter;

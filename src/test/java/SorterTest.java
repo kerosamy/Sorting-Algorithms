@@ -13,13 +13,13 @@ public class SorterTest {
 
     @Test
     public void testSortingCorrectness() {
+
         SortingStrategy sortNLogN = new ONlogNSort();
         SortingStrategy sortN2 = new ON2Sort();
         SortingStrategy sortN = new ONSort();
         Random rand = new Random();
-
         for (int i = 0; i < 20; i++) {
-            int size = rand.nextInt(96) + 5;
+            int size = rand.nextInt(1000) + 5;
             ArrayList<Integer> arr = new ArrayList<>();
 
             for (int j = 0; j < size; j++) {
